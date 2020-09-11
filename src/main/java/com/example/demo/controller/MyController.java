@@ -14,7 +14,13 @@ public class MyController {
     @GetMapping("/")
     @ResponseBody
     public String welcome() {
-        return "Welcome!!!!!!";
+        return  "Welcome!!!!!!"
+            +   "<br/>"
+            +   "<a href='/getSingle'>Get a single cat fact</a>"
+            +   "<br/>"
+            +   "<a href='localhost:8080/getTen'>Get 10 cat facts</a>"
+            +   "<br/>"
+            +   "<a href='localhost:8080/getTenSortByDate'>Get 10 sorted cat facts</a>";
     }
 
     @GetMapping("/getSingle")
