@@ -35,11 +35,11 @@ public class CatFact implements Comparable<CatFact> {
 
     @Override
     public String toString() {
-        return "CatJoke{" +
-                "text='" + text + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+        return  "</br>"
+            +   "Cat Joke:" + "</br>"
+            +   text + "<br>"
+            +   "Created at: " + createdAt + "<br>"
+            +   "Updated at: " + updatedAt + "</br>";
     }
 
     @Override
