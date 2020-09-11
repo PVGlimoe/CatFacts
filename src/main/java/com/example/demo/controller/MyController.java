@@ -11,23 +11,43 @@ import java.io.IOException;
 @Controller
 public class MyController {
 
-    @GetMapping ("/")
+    @GetMapping("/")
     @ResponseBody
-    public String welcome(){
+    public String welcome() {
         return "Welcome!!!!!!";
     }
 
-    @GetMapping ("/getSingle")
+    @GetMapping("/getSingle")
     @ResponseBody
-    public String getSingleFact(){
+    public String getSingleFact() {
         CatService catService = new CatService();
         try {
-           return catService.getCatData();
-        } catch (IOException e){
+            return catService.getCatData().toString();
+        } catch (IOException e) {
             return "can't access server";
         }
+    }
 
+    @GetMapping("/getTen")
+    @ResponseBody
+    public String getTenCatFacts() {
+        CatService catService = new CatService();
+        try {
 
+            return catService.getTenCatFacts().toString();
+        } catch (IOException e) {
+            return "can't access server";
+        }
+    }
+        @GetMapping ("/getTenSortByDate")
+    @ResponseBody
+    public String getTenSortByDate(){
+        CatService catService = new CatService();
+        try {
+            return catService.sortCatFacts().toString();
+        } catch (IOException e) {
+            return "can't access server";
+        }
     }
 
 }
