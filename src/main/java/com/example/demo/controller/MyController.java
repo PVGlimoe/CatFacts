@@ -3,13 +3,19 @@ package com.example.demo.controller;
 import com.example.demo.services.CatService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 
 @Controller
 public class MyController {
+
+    private String wrapResponseBody(String responseBody){
+        return  "<a href='/'>Home</a>"
+            +   "<br/>"
+            +   responseBody;
+
+    }
 
     @GetMapping("/")
     @ResponseBody
@@ -28,9 +34,9 @@ public class MyController {
     public String getSingleFact() {
         CatService catService = new CatService();
         try {
-            return catService.getCatData().toString();
+            return wrapResponseBody(catService.getCatData().toString());
         } catch (IOException e) {
-            return "can't access server";
+            return wrapResponseBody("can't access server");
         }
     }
 
@@ -39,20 +45,20 @@ public class MyController {
     public String getTenCatFacts() {
         CatService catService = new CatService();
         try {
-
-            return catService.getTenCatFacts().toString();
+            return wrapResponseBody(catService.getTenCatFacts().toString());
         } catch (IOException e) {
-            return "can't access server";
+            return wrapResponseBody("can't access server");
         }
     }
-        @GetMapping ("/getTenSortByDate")
+
+    @GetMapping ("/getTenSortByDate")
     @ResponseBody
     public String getTenSortByDate(){
         CatService catService = new CatService();
         try {
-            return catService.sortCatFacts().toString();
+            return wrapResponseBody(catService.sortCatFacts().toString());
         } catch (IOException e) {
-            return "can't access server";
+            return wrapResponseBody("can't access server");
         }
     }
 
