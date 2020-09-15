@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.services.CatService;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
@@ -26,7 +28,9 @@ public class MyController {
             +   "<br/>"
             +   "<a href='/getTen'>Get 10 cat facts</a>"
             +   "<br/>"
-            +   "<a href='/getTenSortByDate'>Get 10 sorted cat facts</a>";
+            +   "<a href='/getTenSortByDate'>Get 10 sorted cat facts</a>"
+            +   "<br/>"
+            +   "<a href='/contains/?char=a&amount=2'>Contains</a>";
     }
 
     @GetMapping("/getSingle")
@@ -57,6 +61,22 @@ public class MyController {
         CatService catService = new CatService();
         try {
             return wrapResponseBody(catService.sortCatFacts().toString());
+        } catch (IOException e) {
+            return wrapResponseBody("can't access server");
+        }
+    }
+
+    @GetMapping ("/contains")
+    @ResponseBody
+    public String contains(@RequestParam(name="char") String character, @RequestParam int amount){
+        CatService catService = new CatService();
+        try {
+            String catFact = catService.getCatData().toString();
+            int occurrences = StringUtils.countOccurrencesOf(catFact, character);
+            if(occurrences == amount) {
+                return wrapResponseBody( catFact );
+            }
+            return wrapResponseBody("Sorry no luck");
         } catch (IOException e) {
             return wrapResponseBody("can't access server");
         }
