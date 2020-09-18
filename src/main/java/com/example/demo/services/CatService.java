@@ -39,7 +39,7 @@ public class CatService {
         return listOfCatFacts;
     }
 
-    public String catFactContains(String character, int amount){
+    public String catFactContains(String character, int amount) throws IOException{
         String catFact = getCatData().toString();
         int occurrences = StringUtils.countOccurrencesOf(catFact, character);
         if(occurrences == amount) {
