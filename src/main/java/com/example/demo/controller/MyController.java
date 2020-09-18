@@ -12,6 +12,7 @@ import java.io.IOException;
 @Controller
 public class MyController {
     private CatService catService = new CatService();
+    private int nVisitors = 0;
 
     private String wrapResponseBody(String responseBody){
         return  "<a href='/'>Home</a>"
@@ -23,6 +24,7 @@ public class MyController {
     @GetMapping("/")
     @ResponseBody
     public String welcome() {
+        nVisitors++;
         return  "Welcome!!!!!!"
             +   "<br/>"
             +   "<a href='/getSingle'>Get a single cat fact</a>"
@@ -31,7 +33,8 @@ public class MyController {
             +   "<br/>"
             +   "<a href='/getTenSortByDate'>Get 10 sorted cat facts</a>"
             +   "<br/>"
-            +   "<a href='/contains/?char=a&amount=2'>Contains</a>";
+            +   "<a href='/contains/?char=a&amount=2'>Contains</a> <br/>"
+                + "Number of visitors: " + nVisitors;
     }
 
     @GetMapping("/getSingle")
