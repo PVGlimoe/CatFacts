@@ -1,4 +1,5 @@
 package com.example.demo.services;
+import com.example.demo.models.CatFact;
 import com.google.gson.Gson;
 
 import org.springframework.util.StringUtils;
@@ -8,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class CatService {
