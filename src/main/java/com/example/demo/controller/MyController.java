@@ -71,12 +71,7 @@ public class MyController {
     @ResponseBody
     public String contains(@RequestParam(name="char") String character, @RequestParam int amount){
         try {
-            String catFact = catService.getCatData().toString();
-            int occurrences = StringUtils.countOccurrencesOf(catFact, character);
-            if(occurrences == amount) {
-                return wrapResponseBody( catFact );
-            }
-            return wrapResponseBody("Sorry no luck");
+            return wrapResponseBody(catService.catFactContains(character, amount));
         } catch (IOException e) {
             return wrapResponseBody("can't access server");
         }

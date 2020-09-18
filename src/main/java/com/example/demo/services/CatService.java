@@ -1,5 +1,8 @@
 package com.example.demo.services;
 import com.google.gson.Gson;
+
+import org.springframework.util.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,6 +37,15 @@ public class CatService {
        ArrayList<CatFact> listOfCatFacts = getTenCatFacts();
         Collections.sort(listOfCatFacts);
         return listOfCatFacts;
+    }
+
+    public String catFactContains(String character, int amount){
+        String catFact = getCatData().toString();
+        int occurrences = StringUtils.countOccurrencesOf(catFact, character);
+        if(occurrences == amount) {
+            return catFact;
+        }
+        return "Sorry no luck";
 
     }
 }
