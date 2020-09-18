@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @Controller
 public class MyController {
+    private CatService catService = new CatService();
 
     private String wrapResponseBody(String responseBody){
         return  "<a href='/'>Home</a>"
@@ -36,7 +37,6 @@ public class MyController {
     @GetMapping("/getSingle")
     @ResponseBody
     public String getSingleFact() {
-        CatService catService = new CatService();
         try {
             return wrapResponseBody(catService.getCatData().toString());
         } catch (IOException e) {
@@ -47,7 +47,6 @@ public class MyController {
     @GetMapping("/getTen")
     @ResponseBody
     public String getTenCatFacts() {
-        CatService catService = new CatService();
         try {
             return wrapResponseBody(catService.getTenCatFacts().toString());
         } catch (IOException e) {
@@ -58,7 +57,6 @@ public class MyController {
     @GetMapping ("/getTenSortByDate")
     @ResponseBody
     public String getTenSortByDate(){
-        CatService catService = new CatService();
         try {
             return wrapResponseBody(catService.sortCatFacts().toString());
         } catch (IOException e) {
@@ -69,7 +67,6 @@ public class MyController {
     @GetMapping ("/contains")
     @ResponseBody
     public String contains(@RequestParam(name="char") String character, @RequestParam int amount){
-        CatService catService = new CatService();
         try {
             String catFact = catService.getCatData().toString();
             int occurrences = StringUtils.countOccurrencesOf(catFact, character);
